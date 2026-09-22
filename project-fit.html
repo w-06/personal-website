@@ -1,0 +1,135 @@
+<!-- AI生成 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>纳米粒径高斯拟合工具 · 刘家望</title>
+  <meta name="description" content="纳米材料 DLS 粒径对数正态拟合在线工具：读 Excel、出参数、导图表与 PDF 报告。" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235B52E8'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='16' font-family='sans-serif' fill='white' font-weight='700'%3E旺%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<p data-aigc-mark="1" style="margin:0 0 8px;font-size:10px;line-height:1.3;color:#6b6560;font-weight:400;">AI生成</p>
+
+  <header class="site-header">
+    <div class="site-container inner">
+      <a class="logo" href="index.html">
+        <span class="logo-mark">望</span>
+        <span>刘家望</span>
+      </a>
+      <nav class="nav" data-nav>
+        <a href="index.html">首页</a>
+        <a class="active" href="projects.html">项目</a>
+        <a href="about.html">关于</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" data-theme-toggle aria-label="切换主题">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9c0-4-4-8-9-9z"/></svg>
+        </button>
+        <button class="icon-btn menu-toggle" data-menu-toggle aria-label="打开菜单">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="site-container">
+        <a class="back" href="projects.html">← 返回项目</a>
+        <h1 data-split>纳米粒径高斯拟合工具</h1>
+        <p class="lead">纳米材料 DLS 粒径数据分析工具。上传 Excel 自动识别结构并完成对数正态拟合，一键导出图表与 PDF 报告，在线可演示。</p>
+        <ul class="tag-list" style="margin-bottom: 1.2rem;">
+          <li class="tag primary">Streamlit</li>
+          <li class="tag">FastAPI</li>
+          <li class="tag">SciPy</li>
+          <li class="tag">Matplotlib</li>
+          <li class="tag">SQLite</li>
+          <li class="tag">fpdf2</li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn btn-fill" href="https://nano-particle-gaussian-fit.streamlit.app" target="_blank" rel="noopener noreferrer">在线 Demo</a>
+          <a class="btn" href="https://github.com/w-06/nano-particle-gaussian-fit" target="_blank" rel="noopener noreferrer">GitHub 源码</a>
+          <a class="btn" href="#demo">结果一览</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="site-container detail-layout">
+      <div class="detail-main">
+        <div class="shot-grid single" id="demo" data-aos>
+          <figure class="shot">
+            <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>产品界面</div>
+            <div class="body">
+              <img src="assets/svg/project-fit.svg" alt="纳米粒径高斯拟合工具界面示意" />
+            </div>
+          </figure>
+        </div>
+
+        <div class="shot" data-aos>
+          <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>处理链路</div>
+          <div class="body">
+            <img src="assets/svg/arch-fit.svg" alt="纳米粒径拟合工具数据流" />
+          </div>
+        </div>
+
+        <div class="panel" data-aos>
+          <h3>能力亮点</h3>
+          <ul class="point-list">
+            <li><span class="idx">1</span><span><strong>读表即用</strong>：自动识别带表头 / 纯数据 Excel，支持样本分组配置。</span></li>
+            <li><span class="idx">2</span><span><strong>对数正态拟合</strong>：输出平均粒径、几何标准差 GSD、R² 等参数。</span></li>
+            <li><span class="idx">3</span><span><strong>可视化与报告</strong>：柱状对比图、分布拟合曲线，一键导出 PNG 与中文 PDF。</span></li>
+            <li><span class="idx">4</span><span><strong>双架构</strong>：Streamlit 交互 + FastAPI 接口复用同一套拟合逻辑，可脚本批量调用。</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="detail-side">
+        <div class="panel">
+          <h3>项目信息</h3>
+          <div class="kv">
+            <div class="row"><span class="k">角色</span><span class="v">Python 开发</span></div>
+            <div class="row"><span class="k">时间</span><span class="v">2026.06 – 2026.07</span></div>
+            <div class="row"><span class="k">形态</span><span class="v">在线工具 + API</span></div>
+            <div class="row"><span class="k">协议</span><span class="v">MIT</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>技术栈</h3>
+          <ul class="tag-list">
+            <li class="tag">Python</li>
+            <li class="tag">Streamlit</li>
+            <li class="tag">FastAPI</li>
+            <li class="tag">NumPy / SciPy</li>
+            <li class="tag">Pandas</li>
+            <li class="tag">Matplotlib</li>
+            <li class="tag">SQLAlchemy</li>
+            <li class="tag">fpdf2</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>链接</h3>
+          <div class="btn-row">
+            <a class="btn btn-fill" href="https://nano-particle-gaussian-fit.streamlit.app" target="_blank" rel="noopener noreferrer">在线演示</a>
+            <a class="btn" href="https://github.com/w-06/nano-particle-gaussian-fit" target="_blank" rel="noopener noreferrer">源码仓库</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-container footer-inner">
+      <p>© <span data-year></span> 刘家望 · AI Agent / 全栈 · 旺.xyz</p>
+      <div class="footer-links">
+        <a href="https://github.com/w-06" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="mailto:3356557909@qq.com">邮箱</a>
+        <a href="tel:17302016909">电话</a>
+        <a href="about.html">关于</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
