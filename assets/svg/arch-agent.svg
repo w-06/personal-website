@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" fill="none">
+  <rect width="960" height="560" fill="#FFFFFF"/>
+  <!-- Browser -->
+  <rect x="80" y="50" width="180" height="70" rx="16" fill="#EDEBFF" stroke="#1A1D24" stroke-width="4"/>
+  <text x="170" y="92" text-anchor="middle" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="20" font-weight="700" fill="#1A1D24">React 工作台</text>
+  <!-- Arrow -->
+  <path d="M270 85 H330" stroke="#1A1D24" stroke-width="4"/>
+  <path d="M318 73 L338 85 L318 97" stroke="#1A1D24" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- FastAPI -->
+  <rect x="340" y="50" width="160" height="70" rx="16" fill="#E8F8F3" stroke="#1A1D24" stroke-width="4"/>
+  <text x="420" y="92" text-anchor="middle" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="20" font-weight="700" fill="#1A1D24">FastAPI</text>
+  <!-- Arrow -->
+  <path d="M510 85 H570" stroke="#1A1D24" stroke-width="4"/>
+  <path d="M558 73 L578 85 L558 97" stroke="#1A1D24" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- LangGraph -->
+  <rect x="580" y="50" width="180" height="70" rx="16" fill="#5B52E8" stroke="#1A1D24" stroke-width="4"/>
+  <text x="670" y="92" text-anchor="middle" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">LangGraph</text>
+  <!-- Down -->
+  <path d="M670 120 V160" stroke="#1A1D24" stroke-width="4"/>
+  <path d="M658 148 L670 168 L682 148" stroke="#1A1D24" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Router -->
+  <rect x="500" y="175" width="340" height="64" rx="16" fill="#FFFFFF" stroke="#1A1D24" stroke-width="4"/>
+  <text x="670" y="214" text-anchor="middle" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="18" font-weight="700" fill="#1A1D24">风险识别 · 意图路由</text>
+  <!-- Three branches -->
+  <path d="M580 239 V280" stroke="#1A1D24" stroke-width="3"/>
+  <path d="M670 239 V280" stroke="#1A1D24" stroke-width="3"/>
+  <path d="M760 239 V280" stroke="#1A1D24" stroke-width="3"/>
+  <path d="M500 215 H430 V320" stroke="#1A1D24" stroke-width="3"/>
+  <path d="M430 320 H480" stroke="#1A1D24" stroke-width="3"/>
+  <!-- RAG -->
+  <rect x="430" y="295" width="150" height="70" rx="14" fill="#EDEBFF" stroke="#1A1D24" stroke-width="3"/>
+  <text x="505" y="337" text-anchor="middle" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="18" font-weight="700" fill="#1A1D24">RAG 检索</text>
+  <!-- Tools -->
+  <rect x="600" y="295" width="140" height="70" rx="14" fill="#FFF0EB" stroke="#1A1D24" stroke-width="3"/>
+  <text x="670" y="337" text-anchor="middle" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="18" font-weight="700" fill="#1A1D24">MCP 工具</text>
+  <!-- Safety -->
+  <rect x="760" y="295" width="140" height="70" rx="14" fill="#E8F8F3" stroke="#1A1D24" stroke-width="3"/>
+  <text x="830" y="337" text-anchor="middle" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="18" font-weight="700" fill="#1A1D24">安全拦截</text>
+  <!-- Bottom store -->
+  <rect x="430" y="420" width="340" height="64" rx="16" fill="#F6F4EF" stroke="#1A1D24" stroke-width="4"/>
+  <text x="600" y="459" text-anchor="middle" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="18" font-weight="700" fill="#1A1D24">回答生成 · 校验 · 审计</text>
+  <path d="M505 365 V420" stroke="#1A1D24" stroke-width="3"/>
+  <path d="M670 365 V420" stroke="#1A1D24" stroke-width="3"/>
+  <path d="M830 365 V392 H770" stroke="#1A1D24" stroke-width="3"/>
+  <!-- Side note -->
+  <text x="120" y="220" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="16" font-weight="600" fill="#8B92A3">BM25 + pgvector</text>
+  <text x="120" y="248" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="16" font-weight="600" fill="#8B92A3">RRF 融合 · 重排</text>
+  <rect x="100" y="270" width="150" height="50" rx="12" fill="#FFFFFF" stroke="#1A1D24" stroke-width="3"/>
+  <text x="175" y="301" text-anchor="middle" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="16" font-weight="700" fill="#1A1D24">知识库</text>
+  <path d="M250 295 H430" stroke="#1A1D24" stroke-width="3" stroke-dasharray="6 4"/>
+  <rect x="100" y="360" width="150" height="50" rx="12" fill="#FFFFFF" stroke="#1A1D24" stroke-width="3"/>
+  <text x="175" y="391" text-anchor="middle" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="16" font-weight="700" fill="#1A1D24">模拟业务数据</text>
+  <path d="M250 385 H580" stroke="#1A1D24" stroke-width="3" stroke-dasharray="6 4"/>
+</svg>

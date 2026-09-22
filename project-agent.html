@@ -1,0 +1,137 @@
+<!-- AI生成 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>医疗知识工作流 Agent · 刘家望</title>
+  <meta name="description" content="基于 LangGraph、MCP 与 RAG 的医疗知识检索与流程辅助工作台。" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235B52E8'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='16' font-family='sans-serif' fill='white' font-weight='700'%3E旺%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<p data-aigc-mark="1" style="margin:0 0 8px;font-size:10px;line-height:1.3;color:#6b6560;font-weight:400;">AI生成</p>
+
+  <header class="site-header">
+    <div class="site-container inner">
+      <a class="logo" href="index.html">
+        <span class="logo-mark">望</span>
+        <span>刘家望</span>
+      </a>
+      <nav class="nav" data-nav>
+        <a href="index.html">首页</a>
+        <a class="active" href="projects.html">项目</a>
+        <a href="about.html">关于</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" data-theme-toggle aria-label="切换主题">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9c0-4-4-8-9-9z"/></svg>
+        </button>
+        <button class="icon-btn menu-toggle" data-menu-toggle aria-label="打开菜单">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="site-container">
+        <a class="back" href="projects.html">← 返回项目</a>
+        <h1 data-split>医疗知识工作流 Agent</h1>
+        <p class="lead">基于 LangGraph、MCP 与 RAG 的医疗知识检索、业务查询与流程辅助工作台。可演示、可测试、可部署。</p>
+        <ul class="tag-list" style="margin-bottom: 1.2rem;">
+          <li class="tag primary">LangGraph</li>
+          <li class="tag">RAG</li>
+          <li class="tag">MCP</li>
+          <li class="tag">FastAPI</li>
+          <li class="tag">React</li>
+          <li class="tag">pgvector</li>
+          <li class="tag">Docker</li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn btn-fill" href="https://github.com/w-06/med-agent-workspace" target="_blank" rel="noopener noreferrer">GitHub 源码</a>
+          <a class="btn" href="#demo">界面演示</a>
+          <a class="btn" href="#arch">架构一览</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="site-container detail-layout">
+      <div class="detail-main">
+        <div class="shot-grid single" id="demo" data-aos>
+          <figure class="shot">
+            <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>工作台界面</div>
+            <div class="body">
+              <img src="assets/svg/project-agent.svg" alt="医疗知识 Agent 工作台界面示意" />
+            </div>
+          </figure>
+        </div>
+
+        <div class="shot" id="arch" data-aos>
+          <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>系统架构</div>
+          <div class="body">
+            <img src="assets/svg/arch-agent.svg" alt="医疗知识 Agent 架构图" />
+          </div>
+        </div>
+
+        <div class="panel" data-aos>
+          <h3>能力亮点</h3>
+          <ul class="point-list">
+            <li><span class="idx">1</span><span><strong>Agent 工作流</strong>：风险识别、意图路由、知识检索、工具调用、回答生成、结果校验与审计留痕。</span></li>
+            <li><span class="idx">2</span><span><strong>RAG 全链路</strong>：文档解析、章节切分、BM25 + pgvector、RRF 融合与轻量重排，引用可溯源。</span></li>
+            <li><span class="idx">3</span><span><strong>MCP 工具体系</strong>：7 个标准化工具，Streamable HTTP 提供，失败自动回退内部工具。</span></li>
+            <li><span class="idx">4</span><span><strong>安全与交互</strong>：高风险拦截、人工复核、SSE 流式对话、Markdown 与引用定位。</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="detail-side">
+        <div class="panel">
+          <h3>项目信息</h3>
+          <div class="kv">
+            <div class="row"><span class="k">角色</span><span class="v">全栈开发</span></div>
+            <div class="row"><span class="k">时间</span><span class="v">2026.07 – 2026.09</span></div>
+            <div class="row"><span class="k">形态</span><span class="v">工作台 + API</span></div>
+            <div class="row"><span class="k">开源</span><span class="v">GitHub</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>技术栈</h3>
+          <ul class="tag-list">
+            <li class="tag">Python</li>
+            <li class="tag">FastAPI</li>
+            <li class="tag">LangGraph</li>
+            <li class="tag">MCP SDK</li>
+            <li class="tag">PostgreSQL</li>
+            <li class="tag">pgvector</li>
+            <li class="tag">React 19</li>
+            <li class="tag">TypeScript</li>
+            <li class="tag">Docker Compose</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>链接</h3>
+          <div class="btn-row">
+            <a class="btn btn-fill" href="https://github.com/w-06/med-agent-workspace" target="_blank" rel="noopener noreferrer">源码仓库</a>
+            <a class="btn" href="mailto:3356557909@qq.com">讨论细节</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-container footer-inner">
+      <p>© <span data-year></span> 刘家望 · AI Agent / 全栈 · 旺.xyz</p>
+      <div class="footer-links">
+        <a href="https://github.com/w-06" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="mailto:3356557909@qq.com">邮箱</a>
+        <a href="tel:17302016909">电话</a>
+        <a href="about.html">关于</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
