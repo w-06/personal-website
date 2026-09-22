@@ -11,7 +11,12 @@
   }
   function syncThemeIcon() {
     if (!themeBtn) return;
-    themeBtn.setAttribute("aria-label", root.classList.contains("dark") ? "切换到浅色" : "切换到暗色");
+    const isDark = root.classList.contains("dark");
+    const tip = isDark ? "当前夜间模式，点击切换到日间模式" : "当前日间模式，点击切换到夜间模式";
+    themeBtn.setAttribute("aria-label", tip);
+    themeBtn.setAttribute("title", tip);
+    const label = themeBtn.querySelector(".theme-label");
+    if (label) label.textContent = isDark ? "夜间模式" : "日间模式";
   }
   syncThemeIcon();
   themeBtn &&
