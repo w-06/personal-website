@@ -185,6 +185,36 @@ button {
   grid-auto-flow: column;
 }
 
+.nav-resume {
+  margin-left: 0.35rem;
+  padding: 0.45rem 0.95rem !important;
+  border: 2px solid var(--line);
+  background: var(--primary) !important;
+  color: #fff !important;
+  font-weight: 700;
+  box-shadow: 2px 2px 0 color-mix(in srgb, var(--line) 15%, transparent);
+}
+
+.nav-resume:hover,
+.nav-resume.active {
+  background: var(--primary-2) !important;
+  color: #fff !important;
+}
+
+.resume-frame-wrap {
+  background: var(--bg-soft);
+  padding: 0.5rem;
+}
+
+.resume-frame {
+  display: block;
+  width: 100%;
+  height: min(80vh, 960px);
+  border: 0;
+  border-radius: 10px;
+  background: var(--card);
+}
+
 .theme-label {
   font-size: 0.75rem;
   font-weight: 700;
