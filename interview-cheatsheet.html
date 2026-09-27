@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>算法/大模型测试面试速查 · 刘家望</title>
+  <meta name="description" content="面试复盘速查：准确率召回率、模型幻觉、测试用例设计、bad case、项目口述。" />
+  <style>
+    :root {
+      --bg: #f6f4ef;
+      --ink: #1a1d24;
+      --ink-2: #4a5060;
+      --card: #fff;
+      --primary: #5b52e8;
+      --accent: #ff6b4a;
+      --mint: #3dbf9f;
+      --line: #1a1d24;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    .wrap {
+      width: min(100% - 1.5rem, 860px);
+      margin: 0 auto;
+      padding: 2rem 0 3rem;
+    }
+    header {
+      border: 3px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+      padding: 1.4rem 1.5rem;
+      box-shadow: -3px 5px 0 rgba(26,29,36,.08);
+      margin-bottom: 1.25rem;
+    }
+    header h1 {
+      margin: 0 0 .4rem;
+      font-size: 1.55rem;
+      font-weight: 900;
+    }
+    header p { margin: 0; color: var(--ink-2); }
+    .tagline {
+      display: inline-block;
+      margin-top: .75rem;
+      padding: .25rem .7rem;
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--primary) 12%, #fff);
+      color: var(--primary);
+      font-size: .8rem;
+      font-weight: 700;
+    }
+    section {
+      border: 3px solid var(--line);
+      border-radius: 16px;
+      background: var(--card);
+      padding: 1.15rem 1.25rem;
+      margin-bottom: 1rem;
+      box-shadow: -2px 4px 0 rgba(26,29,36,.06);
+    }
+    section h2 {
+      margin: 0 0 .75rem;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    section h2 .num {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border: 2px solid var(--line);
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--primary) 14%, #fff);
+      color: var(--primary);
+      font-size: .8rem;
+    }
+    h3 {
+      margin: 1rem 0 .4rem;
+      font-size: .98rem;
+      color: var(--primary);
+    }
+    p, li { color: var(--ink-2); font-size: .95rem; }
+    strong { color: var(--ink); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: .6rem 0;
+      font-size: .9rem;
+    }
+    th, td {
+      border: 2px solid color-mix(in srgb, var(--line) 25%, transparent);
+      padding: .5rem .6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--bg);
+      font-size: .82rem;
+    }
+    ul, ol { padding-left: 1.2rem; margin: .4rem 0; }
+    li { margin: .25rem 0; }
+    .callout {
+      border-left: 4px solid var(--primary);
+      background: color-mix(in srgb, var(--primary) 8%, #fff);
+      padding: .7rem .9rem;
+      border-radius: 0 10px 10px 0;
+      margin: .7rem 0;
+    }
+    .callout.warn {
+      border-left-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 8%, #fff);
+    }
+    .callout.good {
+      border-left-color: var(--mint);
+      background: color-mix(in srgb, var(--mint) 10%, #fff);
+    }
+    .callout strong { display: block; margin-bottom: .25rem; }
+    code {
+      background: var(--bg);
+      border: 1px solid color-mix(in srgb, var(--line) 15%, transparent);
+      border-radius: 6px;
+      padding: .05rem .35rem;
+      font-size: .86em;
+    }
+    pre {
+      background: #1a1d24;
+      color: #eef0f5;
+      border-radius: 12px;
+      padding: .9rem 1rem;
+      overflow-x: auto;
+      font-size: .82rem;
+      line-height: 1.5;
+      border: 3px solid var(--line);
+    }
+    pre code {
+      background: none;
+      border: 0;
+      color: inherit;
+      padding: 0;
+    }
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+    }
+    .mini {
+      border: 2px solid color-mix(in srgb, var(--line) 20%, transparent);
+      border-radius: 12px;
+      padding: .75rem .85rem;
+      background: var(--bg);
+    }
+    .mini h4 {
+      margin: 0 0 .35rem;
+      font-size: .9rem;
+    }
+    .mini p {
+      margin: 0;
+      font-size: .86rem;
+    }
+    footer {
+      margin-top: 1.25rem;
+      color: var(--ink-2);
+      font-size: .85rem;
+      text-align: center;
+    }
+    @media (max-width: 640px) {
+      .grid2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+    <header>
+      <h1>算法 / 大模型测试 · 面试速查</h1>
+      <p>刘家望 · 复盘补课单：把没答上的八股补成能张口就来的答案。</p>
+      <span class="tagline">30 分钟能背完 · 面试前扫一眼</span>
+    </header>
+
+    <section>
+      <h2><span class="num">1</span>准确率 / 精确率 / 召回率 / F1</h2>
+      <p>用「模型答得对不对」二分类来记：</p>
+      <table>
+        <thead>
+          <tr><th>指标</th><th>含义</th><th>怎么算</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>准确率 Accuracy</strong></td>
+            <td>全部里判对的比例</td>
+            <td>对的 ÷ 总数</td>
+          </tr>
+          <tr>
+            <td><strong>精确率 Precision</strong></td>
+            <td>判成「对」的里，真是对的</td>
+            <td>TP ÷ (TP+FP)</td>
+          </tr>
+          <tr>
+            <td><strong>召回率 Recall</strong></td>
+            <td>真是「对」的里，被抓出来的</td>
+            <td>TP ÷ (TP+FN)</td>
+          </tr>
+          <tr>
+            <td><strong>F1</strong></td>
+            <td>精确与召回的折中</td>
+            <td>2·P·R / (P+R)</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout good">
+        <strong>一句话口诀</strong>
+        精确率高 = 少冤枉（判对里少假的）；召回率高 = 少漏掉。医疗问答往往更怕漏（重召回）。
+      </div>
+      <h3>测试/评测里还会用到</h3>
+      <ul>
+        <li><strong>通过率</strong>：用例是否满足预期（你项目里的指标）</li>
+        <li><strong>引用命中 / 溯源率</strong>：回答是否落在知识库来源</li>
+        <li><strong>风险拦截率</strong>：高风险问题是否拦住</li>
+        <li><strong>延迟 P50 / P95</strong>：接口耗时</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="num">2</span>模型幻觉（必考）</h2>
+      <div class="callout">
+        <strong>标准定义（背）</strong>
+        模型生成了<strong>看起来合理、但与事实 / 知识库 / 输入不符</strong>的内容。例如编造不存在的药品名、文献，或知识库没写却给出「糖尿病患者不能吃某水果」。
+      </div>
+      <h3>测试上怎么抓</h3>
+      <ol>
+        <li><strong>库里有的题</strong>：看能否答对、引用是否命中来源</li>
+        <li><strong>库里没有的题</strong>：应拒答 / 说不确定，而不是瞎编</li>
+        <li><strong>错误前提</strong>：给矛盾信息，看是否跟着错（如男性开妇科药）</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2><span class="num">3</span>等价类划分 + 边界值</h2>
+      <h3>等价类划分</h3>
+      <p>输入分成<strong>有效 / 无效</strong>若干类，每类抽 1 个代表，不穷举。</p>
+      <div class="grid2">
+        <div class="mini">
+          <h4>文件上传 · 有效</h4>
+          <p>PDF、Word、Markdown、TXT、正常大小</p>
+        </div>
+        <div class="mini">
+          <h4>文件上传 · 无效</h4>
+          <p>exe、0KB、超大文件、假后缀（.pdf 实为 zip）</p>
+        </div>
+        <div class="mini">
+          <h4>特殊类</h4>
+          <p>加密 PDF、扫描件、带密码 Word、损坏文件</p>
+        </div>
+        <div class="mini">
+          <h4>边界值</h4>
+          <p>限 10MB → 0、1B、10MB-1、10MB、10MB+1</p>
+        </div>
+      </div>
+      <h3>口头答题模板</h3>
+      <div class="callout">
+        先按等价类分有效/无效 → 在边界取点 → 补异常 / 兼容 / 安全类。
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="num">4</span>bad case（别再答「没遇到」）</h2>
+      <p><strong>定义：</strong>模型或流程结果<strong>不符合预期</strong>的样例。</p>
+      <h3>四步处理</h3>
+      <ol>
+        <li><strong>记录</strong>：输入、模型输出、期望输出、复现步骤</li>
+        <li><strong>归类</strong>：幻觉 / 漏检索 / 意图错 / 解析错 / 边界未覆盖</li>
+        <li><strong>补用例</strong>：进回归集，防止再坏</li>
+        <li><strong>反馈</strong>：给算法/研发，必要时改数据、prompt、规则</li>
+      </ol>
+      <div class="callout good">
+        <strong>项目怎么套</strong>
+        「我项目里高风险问题会进拦截 + 人工复核，这类必须人工确认的结果，就是我们口径里的 bad case 流。」
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="num">5</span>开发不认 bug</h2>
+      <ol>
+        <li><strong>对齐标准</strong>：需求文档 / 原型 / 验收标准，先分清是 bug 还是需求不清</li>
+        <li><strong>补证据</strong>：复现步骤、环境、截图/录屏、日志、期望 vs 实际</li>
+        <li><strong>评估影响</strong>：概率、影响用户、是否堵主流程</li>
+        <li><strong>仍分歧</strong>：拉产品 / 测试负责人，按优先级走，不硬吵</li>
+        <li><strong>安全类</strong>要坚持；争议可记「待确认」，但别静默关闭</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2><span class="num">6</span>1 分钟项目口述（测试视角）</h2>
+      <div class="callout good">
+        <strong>医疗 Agent</strong>
+        「我搭了 100 题评测集，跑通过率、意图准确、引用通过率、风险拦截率、工具成功率、延迟。测试覆盖：多格式文件解析、检索命中、医疗问答、高风险拦截。后端 17 项 pytest，用 AI 生成用例草稿再人工补边界。」
+      </div>
+      <div class="callout good">
+        <strong>纳米拟合工具</strong>
+        「Python 自动识别 Excel、对数正态拟合、出图和 PDF。上线后按真实反馈改了图表颜色和曲线拆分，课题组推广，每人省 10–20 分钟。带 Pydantic 做数据校验。」
+      </div>
+      <h3>AI 在测试里怎么用（别只说换强模型）</h3>
+      <div class="callout">
+        写清输入/预期 → 模型生成用例草稿 → 人工筛 + 补边界 → 跑结果 → 人工判对错 → 失败进回归。
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="num">7</span>现场可复用的 Python 片段</h2>
+      <pre><code># 评测通过率统计
+import json
+total = pass_n = 0
+for line in open("results.jsonl", encoding="utf-8"):
+    row = json.loads(line)
+    total += 1
+    pass_n += int(row.get("pass", False))
+print(f"通过率 {pass_n}/{total} = {pass_n / total:.2%}")
+
+# 接口断言
+import requests
+r = requests.post("http://127.0.0.1:8000/api/v1/fit", files={"file": open("a.xls", "rb")})
+assert r.status_code == 200
+assert "mean_size" in r.json()
+
+# 边界用例思路：file_size in [0, 1, 10*1024*1024-1, 10*1024*1024, 10*1024*1024+1]</code></pre>
+    </section>
+
+    <section>
+      <h2><span class="num">8</span>表达注意 & 反问</h2>
+      <div class="callout warn">
+        <strong>别说「我有点忘了」就停</strong>
+        改成：「严格定义我要确认一下，我的理解是……项目里我用的是通过率/拦截率，概念上和精确率召回率应如何对应？」
+      </div>
+      <h3>可反问</h3>
+      <ul>
+        <li>评测集多大规模？金标准是人工标还是模型辅助？</li>
+        <li>测试问题怎么流转给算法/研发？用什么系统？</li>
+        <li>更偏效果评测、功能测试，还是评测工具开发？</li>
+      </ul>
+    </section>
+
+    <footer>
+      速查单 · 刘家望 · 祝 offer 到手 · 旺.xyz
+    </footer>
+  </div>
+</body>
+</html>
